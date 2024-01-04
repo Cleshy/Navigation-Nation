@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
 :root {
   --primaryColor: #fff;
   --navColor1: #21292c;
@@ -14,9 +16,14 @@ html {
 body {
   margin: 0;
   background: #000;
+  font-family: "Nunito", sans-serif;
 }
 
 /* --- Navigation Menu ------------------------------ */
+
+.brand {
+  color: red;
+}
 
 /* --- Menu Bars ------------------------------------ */
 
@@ -69,7 +76,7 @@ section {
 }
 
 section#home {
-  background-image: url("https://images.unsplash.com/photo-1581453904507-626ddb717f14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80");
+  background-image: url("https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: center center;
 }
@@ -80,10 +87,11 @@ section#home a {
   top: 1.5rem;
   left: 1.5rem;
   text-decoration: none;
-  font-size: 0.8rem;
-  padding-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 0.75rem;
   color: var(--primaryColor);
-  border-bottom: 1px solid var(--primaryColor);
+  border: 1px solid var(--primaryColor);
 }
 
 section#about {
