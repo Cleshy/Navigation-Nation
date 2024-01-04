@@ -9,63 +9,95 @@
   --navColor5: #00aa72;
 }
 
-html {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #000;
   font-family: "Nunito", sans-serif;
+  position: relative;
 }
 
 /* --- Navigation Menu ------------------------------ */
 
-/* Overlay */
-
-.overlay {
+.nav {
   position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 3rem;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: var(--primaryColor);
+  padding: 0.35em 0.75em;
+  position: relative;
   z-index: 9;
+}
+
+.logo::before {
   top: 0;
   left: 0;
+}
+
+.logo::after {
+  bottom: 0;
+  right: 0;
+}
+
+.logo::before,
+.logo::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--primaryColor);
+  transition: all 0.4s;
+  z-index: -1;
+  margin: 0 auto;
+}
+
+.logo:hover::before,
+.logo:hover::after {
+  width: 100%;
+}
+
+.nav-list {
   width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  transform: translateX(-100vw);
-}
-
-.overlay-slide-in {
-  transition: all 0.3s ease-in;
-  transform: translateX(0);
-}
-
-.overlay-slide-out {
-  transition: all 0.8s ease-out;
-  transform: translateX(-100vw);
-}
-
-/* Nav Menu Items */
-
-nav,
-nav ul {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  list-style: none;
+  z-index: 9;
+  height: 100vh;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
 }
 
-nav ul li {
+.show {
+  transform: translateX(0);
+}
+
+.nav-list li {
   height: 20%;
   overflow: hidden;
 }
 
-nav li a {
+.nav-link {
   position: relative;
   top: 45%;
   color: #fff;
@@ -76,8 +108,8 @@ nav li a {
   text-align: center;
 }
 
-nav li a::before,
-nav li a::after {
+.nav-link::before,
+.nav-link::after {
   content: "";
   width: 25vw;
   height: 3px;
@@ -88,36 +120,36 @@ nav li a::after {
   transition: all 0.2s ease-in-out;
 }
 
-nav li a::before {
+.nav-link::before {
   left: 0;
 }
 
-nav li a::after {
+.nav-link::after {
   right: 0;
 }
 
-nav li a:hover::before,
-nav li a:hover::after {
+.nav-link:hover::before,
+.nav-link:hover::after {
   opacity: 1;
 }
 
-nav li:nth-of-type(1) {
+.nav-list li:nth-of-type(1) {
   background-color: var(--navColor1);
 }
 
-nav li:nth-of-type(2) {
+.nav-list li:nth-of-type(2) {
   background-color: var(--navColor2);
 }
 
-nav li:nth-of-type(3) {
+.nav-list li:nth-of-type(3) {
   background-color: var(--navColor3);
 }
 
-nav li:nth-of-type(4) {
+.nav-list li:nth-of-type(4) {
   background-color: var(--navColor4);
 }
 
-nav li:nth-of-type(5) {
+.nav-list li:nth-of-type(5) {
   background-color: var(--navColor5);
 }
 
@@ -188,12 +220,8 @@ nav li:nth-of-type(5) {
 /* --- Menu Bars ------------------------------------ */
 
 .menu-bars {
-  position: fixed;
-  top: 1rem;
-  right: 2rem;
-  z-index: 10;
-  display: inline;
   cursor: pointer;
+  z-index: 100;
 }
 
 .bar1,
@@ -226,7 +254,6 @@ nav li:nth-of-type(5) {
 section {
   width: 100%;
   height: 100vh;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,23 +263,27 @@ section {
 }
 
 section#home {
-  background-image: url("https://images.unsplash.com/photo-1477973770766-6228305816df?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center center;
+  background-color: var(--navColor1);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
 }
 
-section#home a {
-  position: absolute;
-  z-index: 2;
-  top: 1.5rem;
-  left: 1.5rem;
-  text-decoration: none;
-  letter-spacing: 5px;
-  font-size: 1.2rem;
+section#home h1 {
+  font-size: 3.5rem;
+}
+
+.ztm {
+  display: inline-block;
   font-weight: bold;
-  padding: 0.35rem 0.5rem;
-  color: var(--primaryColor);
-  border: 2px solid var(--primaryColor);
+  color: var(--navColor2);
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+section#home p {
+  font-size: 1.2rem;
 }
 
 section#about {
@@ -273,6 +304,14 @@ section#contact {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media (max-width: 600px) {
+  .nav {
+    padding: 2rem;
+  }
+
+  section#home h1 {
+    font-size: 2rem;
+  }
+
   section#home a {
     top: 1rem;
     left: 1rem;
